@@ -7,8 +7,7 @@ use Nikazooz\LaravelCaptcha\Tests\IntegrationTest;
 
 class GenerateImageTest extends IntegrationTest
 {
-    /** @test */
-    public function can_generate_captcha_image_when_requested_using_gd()
+    public function test_can_generate_captcha_image_when_requested_using_gd()
     {
         if (! function_exists('gd_info')) {
             $this->markTestSkipped(
@@ -31,8 +30,7 @@ class GenerateImageTest extends IntegrationTest
         $this->assertEquals($expectedType, $type);
     }
 
-    /** @test */
-    public function can_generate_captcha_image_when_requested_using_imagick()
+    public function test_can_generate_captcha_image_when_requested_using_imagick()
     {
         if (! class_exists('Imagick')) {
             $this->markTestSkipped(
@@ -55,8 +53,7 @@ class GenerateImageTest extends IntegrationTest
         $this->assertEquals($expectedType, $type);
     }
 
-    /** @test */
-    public function can_configure_image_width_and_height()
+    public function test_can_configure_image_width_and_height()
     {
         if (! function_exists('gd_info')) {
             $this->markTestSkipped(

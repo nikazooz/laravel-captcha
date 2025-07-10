@@ -8,8 +8,7 @@ use Nikazooz\LaravelCaptcha\Tests\IntegrationTest;
 
 class CaptchaValidationTest extends IntegrationTest
 {
-    /** @test */
-    public function can_validate_captcha()
+    public function test_can_validate_captcha()
     {
         $code = Captcha::code();
 
@@ -19,8 +18,7 @@ class CaptchaValidationTest extends IntegrationTest
         $this->assertFalse($validator->fails());
     }
 
-    /** @test */
-    public function validation_fails_if_invalid_code_is_provided()
+    public function test_validation_fails_if_invalid_code_is_provided()
     {
         $validator = Validator::make(['captcha' => 'invalid-code'], ['captcha' => 'captcha']);
 
@@ -28,8 +26,7 @@ class CaptchaValidationTest extends IntegrationTest
         $this->assertTrue($validator->errors()->has('captcha'));
     }
 
-    /** @test */
-    public function can_validate_captcha_with_case_sensitivity()
+    public function test_can_validate_captcha_with_case_sensitivity()
     {
         $this->setConfig('case_sensitive', true);
 
@@ -47,8 +44,7 @@ class CaptchaValidationTest extends IntegrationTest
         return preg_match('/[A-Z]/', $str);
     }
 
-    /** @test */
-    public function can_configure_allowed_number_of_failed_attempts_before_new_code_is_generated()
+    public function test_can_configure_allowed_number_of_failed_attempts_before_new_code_is_generated()
     {
         $allowedFailures = 2;
         $this->setConfig('allowed_failures', $allowedFailures);

@@ -10,13 +10,13 @@ class GenerateImageTest extends IntegrationTest
     /** @test */
     public function can_generate_captcha_image_when_requested_using_gd()
     {
-        $this->setConfig('driver', 'gd');
-
-        if (! Captcha::isAvailable()) {
+        if (! function_exists('gd_info')) {
             $this->markTestSkipped(
                 'The GD extension is not available.'
             );
         }
+
+        $this->setConfig('driver', 'gd');
 
         $response = $this->withoutExceptionHandling()->get(Captcha::url());
 
@@ -34,13 +34,13 @@ class GenerateImageTest extends IntegrationTest
     /** @test */
     public function can_generate_captcha_image_when_requested_using_imagick()
     {
-        $this->setConfig('driver', 'imagick');
-
-        if (! Captcha::isAvailable()) {
+        if (! class_exists('Imagick')) {
             $this->markTestSkipped(
                 'The Imagick extension is not available.'
             );
         }
+
+        $this->setConfig('driver', 'imagick');
 
         $response = $this->withoutExceptionHandling()->get(Captcha::url());
 
@@ -58,13 +58,13 @@ class GenerateImageTest extends IntegrationTest
     /** @test */
     public function can_configure_image_width_and_height()
     {
-        $this->setConfig('driver', 'gd');
-
-        if (! Captcha::isAvailable()) {
+        if (! function_exists('gd_info')) {
             $this->markTestSkipped(
                 'The GD extension is not available.'
             );
         }
+
+        $this->setConfig('driver', 'gd');
 
         $this->setConfig('image.width', 500);
         $this->setConfig('image.height', 100);
